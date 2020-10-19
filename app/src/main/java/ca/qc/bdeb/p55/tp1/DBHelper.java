@@ -163,4 +163,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return listePersonne;
     }
+
+    public void ajouterUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        ContentValues values = new ContentValues();
+        if (user.getId() != -1) {
+            values.put(USER_ID, user.getId());
+        }
+        values.put(USER_NOM, user.getNom());
+        values.put(USER_DISTANCE_MAX, user.getDistance_max());
+        values.put(USER_DISTANCE_MIN, user.getDistance_min());
+        values.put(USER_DISTANCE_PARCOURUE, user.getDistance_parcourue());
+
+        long id = db.insert(TABLE_USER, null, values);
+        if (id != -1) {
+            user.setId(id);
+        }
+        db.close();
+    }
 }
