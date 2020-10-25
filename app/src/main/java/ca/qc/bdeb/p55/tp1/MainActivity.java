@@ -1,6 +1,10 @@
 package ca.qc.bdeb.p55.tp1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +18,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
+//        DBHelper dbHelper = DBHelper.getInstance(this);
 
-        DBHelper dbHelper = DBHelper.getInstance(this);
+
+
 
 
         button = (Button) findViewById(R.id.buttonC);
@@ -33,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void openNewActivity(){
+
+   public void openNewActivity() {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
