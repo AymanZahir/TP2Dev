@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -22,7 +21,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener,  GoogleMap.OnMapClickListener{
     private static final String TAG = "ca.qc.bdeb.p55.tp1";
 
     private static final int LOCATION_REQUEST_CODE = 1;
@@ -36,7 +35,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+       setContentView(R.layout.activity_maps);
+
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -61,7 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-
+        mMap.setOnMapClickListener(this);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -70,9 +71,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             activeLocalisation();
         }
-
-
-
     }
 
     @SuppressLint("MissingPermission")
@@ -100,7 +98,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_REQUEST_CODE) {
@@ -122,13 +119,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "onMyLocationButtonClick", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "onMyLocationButtonClick", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "onMyLocationClick \n" + location, Toast.LENGTH_SHORT).show();
+  //      Toast.makeText(this, "onMyLocationClick \n" + location, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+      //  Toast.makeText(this, "onMyLocationClick \n" + latLng, Toast.LENGTH_LONG).show();
+
+        // Creating a marker
+        MarkerOptions markerOptions = new MarkerOptions();
+
+        // Setting the position for the marker
+        markerOptions.position(latLng);
+
+        // Setting the title for the marker.
+        // This will be displayed on taping the marker
+        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+
+        // Clears the previously touched position
+        mMap.clear();
+
+        // Animating to the touched position
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        // Placing a marker on the touched position
+        mMap.addMarker(markerOptions);
+
+        DBHelper dbHelper = DBHelper.getInstance(this);
+
 
     }
 }
