@@ -91,6 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(LIEUX_NOM, Lieux.getNom());
         values.put(LIEUX_LATTITUDE, Lieux.getLatitude());
         values.put(LIEUX_LONGITUDE, Lieux.getLongitude());
+        values.put(LIEUX_TYPE, Lieux.getType());
         if (Lieux.getTelephone() != null) {
             values.put(LIEUX_TELEPHONE, Lieux.getTelephone());
         }

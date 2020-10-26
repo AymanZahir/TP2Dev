@@ -33,13 +33,10 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LieuxCourseListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    ConstraintLayout constraintLayout;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-
-    private Button buttonAddToFavoris;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,31 +46,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
-        RecyclerView lieuxCourseRecyclerView = findViewById(R.id.coursesRecyclerView);
-        buttonAddToFavoris = findViewById(R.id.btnAddFavoris);
-
-        List<LieuxCourse> lieuxCourse = new ArrayList<>();
-
-
-        //Example ajouté pour test
-        LieuxCourse parc = new LieuxCourse();
-        parc.image = R.drawable.ic_baseline_home_24;
-        parc.name = "Outremont parc";
-        parc.rating = 4.5f;
-        parc.createdBy = "Ville de montréal";
-        parc.isSelected = false;
-        parc.story = "Très bon parc pour courrir le matin";
-        lieuxCourse.add(parc);
-
-        final LieuxCourseAdapter lieuxCourseAdapter = new LieuxCourseAdapter(lieuxCourse, this);
-        lieuxCourseRecyclerView.setAdapter(lieuxCourseAdapter);
-
-
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer);
-
-//        DBHelper dbHelper = DBHelper.getInstance(this);
-
 
         navigationView.bringToFront();
 
@@ -82,26 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Liste des lieux sélect
-        List<LieuxCourse> selectedLieuxCourse= lieuxCourseAdapter.getSelectedLieuxCourse();
-
-        StringBuilder nomsLieuxCourse = new StringBuilder();
-
-        for (int i=0; i < selectedLieuxCourse.size(); i++){
-            if (i ==0){
-                nomsLieuxCourse.append(selectedLieuxCourse.get(i).name);
-            }
-            else {
-                nomsLieuxCourse.append("\n").append(selectedLieuxCourse.get(i).name);
-            }
-        }
-        Toast.makeText(MainActivity.this, nomsLieuxCourse.toString(), Toast.LENGTH_SHORT).show();
-
-    }
-
-    public void openNewActivity() {
-        //Intent intent = new Intent(this, MapsActivity.class);
-        // startActivity(intent);
     }
 
     @Override
@@ -113,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -121,16 +74,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         return true;
-
     }
 
+    public void onClickRapports(MenuItem item) {
+        Intent intent = new Intent(this, RecyclerLieux.class);
+        startActivity(intent);
+    }
 
-    @Override
-    public void onLieuCourseAction(Boolean isSelected) {
-
+    public void onClickMap(MenuItem item) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,12 +1,20 @@
 package ca.qc.bdeb.p55.tp1;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,11 +25,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener,  GoogleMap.OnMapClickListener{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
     private static final String TAG = "ca.qc.bdeb.p55.tp1";
 
     private static final int LOCATION_REQUEST_CODE = 1;
@@ -35,8 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_maps);
-
+        setContentView(R.layout.activity_maps);
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -94,8 +103,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void addMarkerToPosition() {
         LatLng pos = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(pos).title("Position Coureur").snippet("Départ"));
+        mMap.addMarker(new MarkerOptions().position(pos)
+                .title("Position Coureur")
+                .snippet("Départ")
+                .icon(vectorToBitmap(R.drawable.ic_baseline_arrow_drop_down_circle_24, Color.parseColor("#FF0000"))));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
+    }
+
+    private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color) {
+
+        Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(), id, null);
+
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        DrawableCompat.setTint(vectorDrawable, color);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     @Override
@@ -119,21 +143,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMyLocationButtonClick() {
-      //  Toast.makeText(this, "onMyLocationButtonClick", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "onMyLocationButtonClick", Toast.LENGTH_SHORT).show();
         return false;
     }
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-  //      Toast.makeText(this, "onMyLocationClick \n" + location, Toast.LENGTH_SHORT).show();
+        //      Toast.makeText(this, "onMyLocationClick \n" + location, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-      //  Toast.makeText(this, "onMyLocationClick \n" + latLng, Toast.LENGTH_LONG).show();
+        //  Toast.makeText(this, "onMyLocationClick \n" + latLng, Toast.LENGTH_LONG).show();
 
         // Creating a marker
-        MarkerOptions markerOptions = new MarkerOptions();
+  /*      MarkerOptions markerOptions = new MarkerOptions();
 
         // Setting the position for the marker
         markerOptions.position(latLng);
@@ -149,10 +173,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
         // Placing a marker on the touched position
-        mMap.addMarker(markerOptions);
+        mMap.addMarker(markerOptions);*/
+
+        mMap.addMarker(new MarkerOptions().position(latLng)
+                .title("Position Coureur")
+                .snippet("Départ"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+
 
         DBHelper dbHelper = DBHelper.getInstance(this);
-
+        dbHelper.ajouterLieux(new Lieux("lieuxTest", latLng.latitude, latLng.longitude, 2, "156546", 1, 1, 4));
 
     }
 }

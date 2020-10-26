@@ -11,7 +11,7 @@
     >
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ImageLieux"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="30dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageFavori"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="250dp"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtViewType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
@@ -53,9 +53,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageFavori"
         app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/ImageLieux"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         tools:text="Gestionnaire course" />
