@@ -25,7 +25,7 @@ public class RecyclerLieux extends AppCompatActivity {
 
         itemList = dbHelper.getToutLesLieux();
         if (itemList.size() == 0) {
-          //  itemList.add(new Lieux("bdeb", 0, 0, 2, "156546", 1, 0, 4));
+            itemList.add(new Lieux("College Bois De Boulogne", 45.5380, -73.6760, 2, null, 1, 0, 4));
             for (Lieux l : itemList) {
                 dbHelper.ajouterLieux(l);
             }
