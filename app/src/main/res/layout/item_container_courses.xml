@@ -102,7 +102,7 @@
         app:layout_constraintTop_toTopOf="@id/viewBackground"/>
 
 
-    
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
