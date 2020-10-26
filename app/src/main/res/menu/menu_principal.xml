@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Partagez"
+        android:id="@+id/share"/>
+
+    <item
+        android:title="Aide"
+        android:id="@+id/aide"/>
+    <item
+        android:title="Trier par ordre croissant"
+        android:id="@+id/trierItem"/>
+
+    <item
+        android:title="Quitter"
+        android:id="@+id/quitter"/>
+
+
+
+    <item
+        android:title="Parametres"
+        android:icon = "@drawable/ic_baseline_settings_24"
+        android:id="@+id/param"
+        app:showAsAction = "always"/>
+
+
+    <item
+        android:title="Chercher"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:id="@+id/chercher"
+        app:showAsAction = "always"/>
+
+    <item
+        android:title="Trier"
+        android:icon="@drawable/ic_baseline_sort_by_alpha_24"
+        android:id="@+id/trierListe"
+        app:showAsAction = "always"/>
+
+
+
+
+</menu>

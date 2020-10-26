@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutMesCourses"
+    android:layout_margin="5dp"
+    >
+
+    <View
+        android:id="@+id/viewSupporter"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:layout_constraintTop_toBottomOf="@id/imageLieuCourse"
+        />
+
+    <View
+        android:id="@+id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/lieu_course_background"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nomLieu"
+        />
+
+
+
+    <RoundedImageView
+        android:id="@+id/imageLieuCourse"
+        android:layout_width="110dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="15dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomLieu"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageLieuCourse"
+        app:layout_constraintTop_toTopOf="@id/imageLieuCourse"
+        />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:theme="@style/RatingBar"
+        app:layout_constraintStart_toStartOf="@id/nomLieu"
+        app:layout_constraintTop_toBottomOf="@+id/nomLieu"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCreateBy"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/nomLieu"
+        app:layout_constraintStart_toStartOf="@id/nomLieu"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textStory"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/nomLieu"
+        app:layout_constraintStart_toStartOf="@id/nomLieu"
+        app:layout_constraintTop_toBottomOf="@id/textCreateBy"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/icon_checkmark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/viewBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewBackground"/>
+
+
+    
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
