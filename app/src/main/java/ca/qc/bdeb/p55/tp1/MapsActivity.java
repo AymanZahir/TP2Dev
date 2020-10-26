@@ -41,7 +41,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double latitude = 0;
     private double longitude = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,9 +179,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .snippet("Départ"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
-
         DBHelper dbHelper = DBHelper.getInstance(this);
         dbHelper.ajouterLieux(new Lieux("lieuxTest", latLng.latitude, latLng.longitude, 2, "156546", 1, 1, 4));
-
     }
 }
