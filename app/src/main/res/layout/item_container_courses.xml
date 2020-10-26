@@ -11,9 +11,9 @@
     <View
         android:id="@+id/viewSupporter"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        app:layout_constraintTop_toBottomOf="@id/imageLieuCourse"
-        />
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageLieuCourse" />
 
     <View
         android:id="@+id/viewBackground"
@@ -22,12 +22,12 @@
         android:background="@drawable/lieu_course_background"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nomLieu"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nomLieu" />
 
 
 
-    <RoundedImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageLieuCourse"
         android:layout_width="110dp"
         android:layout_height="152dp"
@@ -36,6 +36,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="6dp"
         />
 
     <TextView
@@ -91,6 +92,7 @@
         app:layout_constraintTop_toBottomOf="@id/textCreateBy"/>
 
     <ImageView
+        android:id="@+id/imageSelected"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
