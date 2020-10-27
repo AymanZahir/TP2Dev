@@ -9,12 +9,17 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:onClick="onClickMap"
         android:title="Accueil" />
+    <item
+        android:id="@+id/nav_marquer_localisation"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:onClick="onClickMap"
+        android:title="Marquer un lieu" />
 
     <item
         android:id="@+id/nav_rap_course"
         android:icon="@drawable/ic_baseline_bar_chart_24"
         android:onClick="onClickRapports"
-        android:title="Rapport de mes courses" />
+        android:title="Lieux enregistrees" />
 
     <item
         android:id="@+id/nav_lieux_favoris"
