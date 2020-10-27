@@ -6,4 +6,8 @@
     <string name="navigation_drawer_close">Close navigation</string>
     <string name="textButtonAddFav">Ajouter aux favoris</string>
     <string name="lieux_course">Mes courses</string>
+    <string name="typeBleu">Point eau potable</string>
+    <string name="typeVert">Aire de repos</string>
+    <string name="typeOrange">Point observation</string>
+
 </resources>

@@ -187,6 +187,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Placing a marker on the touched position
         mMap.addMarker(markerOptions);*/
+        Intent intent = new Intent(this, EntreesUtilisateurs.class);
+        startActivity(intent);
 
         mMap.addMarker(new MarkerOptions().position(latLng)
                 .title("Position Coureur")

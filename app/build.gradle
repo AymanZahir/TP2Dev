@@ -36,6 +36,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //RoundedImage
     implementation 'com.makeramen:roundedimageview:2.3.0'
