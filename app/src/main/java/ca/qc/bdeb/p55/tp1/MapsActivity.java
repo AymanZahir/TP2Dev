@@ -48,6 +48,11 @@ import java.util.Date;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
     private static final String TAG = "ca.qc.bdeb.p55.tp1";
 
+    public static final String EXTRA_LIEUX = "ca.qc.bdeb.p55.esteban.labo2.EXTRA_LIEUX";
+    public static final String EXTRA_RESULTAT_LIEUX = "ca.qc.bdeb.p55.intents.EXTRA_RESULTAT_LIEUX";
+    public static final int ACTIVITY2_RESULT = 1;
+
+
     private static final int LOCATION_REQUEST_CODE = 1;
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationClient;
@@ -190,9 +195,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         Intent intent = new Intent(this, EntreesUtilisateurs.class);
-        startActivity(intent);
+        intent.putExtra(EXTRA_LIEUX, latLng);
+        startActivityForResult(intent, ACTIVITY2_RESULT);
 
-        mMap.addMarker(new MarkerOptions().position(latLng)
+    /*    mMap.addMarker(new MarkerOptions().position(latLng)
                 .title("Position Coureur")
                 .snippet("Départ"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
@@ -201,24 +207,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Lieux lieu = new Lieux("lieuxTest", latLng.latitude, latLng.longitude, 2, "156546", 1, 1, 4);
 
-        dbHelper.ajouterLieux(lieu);
+        dbHelper.ajouterLieux(lieu);*/
 
     }
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       *//* if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
-        }*//*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-            setPic();
+        if (requestCode == ACTIVITY2_RESULT) {
+            if ((resultCode == RESULT_OK) && (data != null)) {
+                Lieux lieu = (Lieux) data.getParcelableExtra(MapsActivity.EXTRA_RESULTAT_LIEUX);
+
+                LatLng latLng = new LatLng(lieu.getLatitude(), lieu.getLatitude());
+
+                mMap.addMarker(new MarkerOptions().position(latLng)
+                        .title("Position Coureur")
+                        .snippet("Départ"));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+
+                DBHelper dbHelper = DBHelper.getInstance(this);
+                dbHelper.ajouterLieux(lieu);
+
+            }
         }
     }
 
-    private void setPic() {
+  /*  private void setPic() {
         // Get the dimensions of the View
         int targetW = imageView.getWidth();
         int targetH = imageView.getHeight();

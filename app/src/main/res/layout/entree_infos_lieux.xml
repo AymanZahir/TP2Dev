@@ -7,96 +7,42 @@
     android:layout_height="match_parent"
     android:background="#3F87C1">
 
-    <TextView
-        android:id="@+id/textView_titre_infos_lieux"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="88dp"
-        android:fontFamily="@font/basic"
-        android:text="Informations sur le lieu visité"
-        android:textSize="24sp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView_entree_return"
-        android:layout_width="45dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+        app:title="Ajouter un lieu" />
 
-    <TextView
-        android:id="@+id/textView_entree_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/basic"
-        android:text="Choisissez le type du lieu"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_nomLieu_entree" />
-
-    <ImageView
-        android:id="@+id/imageDuLieu"
-        android:layout_width="198dp"
-        android:layout_height="195dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="118dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:srcCompat="@drawable/ic_baseline_image_24" />
 
     <Button
         android:id="@+id/buttonAddImageLieu"
-        android:layout_width="400dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="208dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#000000"
-        android:text="Ajouter image du lieu"
+        android:text="Ajouter une image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageDuLieu" />
-
-    <EditText
-        android:id="@+id/editText_nomLieu_entree"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:fontFamily="@font/basic"
-        android:hint="ENTREZ NOM DU LIEU"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_titre_infos_lieux" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelephone" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="314dp"
-        android:layout_height="87dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageDuLieu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTelephone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_entree_type">
+        app:layout_constraintTop_toBottomOf="@+id/editTextNom">
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="200dp"
             android:layout_height="22dp"
-            android:layout_marginStart="84dp"
             android:buttonTint="#03A9F4"
             android:text="@string/typeBleu" />
 
@@ -104,8 +50,6 @@
             android:id="@+id/radioButton3"
             android:layout_width="200dp"
             android:layout_height="22dp"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="10dp"
             android:buttonTint="#4CAF50"
             android:text="@string/typeVert" />
 
@@ -113,10 +57,57 @@
             android:id="@+id/radioButton4"
             android:layout_width="200dp"
             android:layout_height="22dp"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
             android:buttonTint="#FF9800"
             android:text="@string/typeOrange" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/btnAjouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:text="Ajouter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNom" />
+
+    <EditText
+        android:id="@+id/editTextNom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nom du lieu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTelephone"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:text="Téléphone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNom" />
+
+    <ImageView
+        android:id="@+id/imageLieu"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:contentDescription="Image du lieu"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAddImageLieu"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:src="@drawable/parkexample" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
