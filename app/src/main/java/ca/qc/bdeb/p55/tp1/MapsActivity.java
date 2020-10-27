@@ -187,6 +187,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Placing a marker on the touched position
         mMap.addMarker(markerOptions);*/
+
+
         Intent intent = new Intent(this, EntreesUtilisateurs.class);
         startActivity(intent);
 
@@ -215,6 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             setPic();
         }
     }
+
     private void setPic() {
         // Get the dimensions of the View
         int targetW = imageView.getWidth();

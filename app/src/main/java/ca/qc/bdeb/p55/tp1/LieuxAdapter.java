@@ -29,6 +29,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
         public TextView txtViewNom;
         public TextView txtViewType;
         public TextView txtViewNbr;
+        public TextView txtViewTelephone;
         public ImageView imageFavori;
 
         public ItemViewHolder(View itemView, final OnItemClickListener listener) {
@@ -39,9 +40,10 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
             txtViewNom = itemView.findViewById(R.id.txtViewNom);
             txtViewType = itemView.findViewById(R.id.txtViewType);
             txtViewNbr = itemView.findViewById(R.id.txtViewNbr);
+            txtViewTelephone = itemView.findViewById(R.id.txtViewTelephone);
             imageFavori = itemView.findViewById(R.id.imageFavori);
 
-            itemView.setOnClickListener( new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     // vérifier que le listener n'est pas null
@@ -76,7 +78,21 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Lieux item = rviList.get(position); // pas besoin d'appeller findViewById
         holder.txtViewNom.setText(item.getNom());
-      //  holder.txtViewNbr.setText(item.getNombreVisites());
+        holder.txtViewNbr.setText("Nombres de visites : " + item.getNombreVisites());
+        switch (item.getType()) {
+            case 1:
+                holder.txtViewType.setText("Point d'eau potable");
+                break;
+            case 2:
+                holder.txtViewType.setText("Aire de repos");
+                break;
+            case 3:
+                holder.txtViewType.setText("Point observation");
+                break;
+        }
+        holder.txtViewTelephone.setText(item.getTelephone());
+
+
     }
 
     @Override
