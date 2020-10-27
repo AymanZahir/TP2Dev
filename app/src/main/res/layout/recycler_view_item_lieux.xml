@@ -24,10 +24,11 @@
                 android:id="@+id/ImageLieux"
                 android:layout_width="82dp"
                 android:layout_height="82dp"
-                app:srcCompat="@drawable/running" />
+                app:srcCompat="@drawable/running"
+                android:contentDescription="Image Lieux" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical">
@@ -36,32 +37,44 @@
                     android:id="@+id/txtViewNom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     tools:text="Nom" />
 
                 <TextView
                     android:id="@+id/txtViewType"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:text="type" />
 
                 <TextView
                     android:id="@+id/txtViewNbr"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
                     android:text="nbrVisite" />
+
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageFavori"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_star_border_24" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageFavori"
+                    android:layout_width="38dp"
+                    android:layout_height="51dp"
+                    android:contentDescription="Favori"
+                    app:srcCompat="@drawable/ic_baseline_star_border_24" />
+
+                <TextView
+                    android:id="@+id/txtViewTelephone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingRight="5dp"
+                    android:text="telephone" />
+            </LinearLayout>
 
         </LinearLayout>
 
