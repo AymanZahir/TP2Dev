@@ -7,7 +7,6 @@
     <item
         android:id="@+id/nav_accueil"
         android:icon="@drawable/ic_baseline_home_24"
-        android:onClick="onClickMap"
         android:title="Accueil" />
     <item
         android:id="@+id/nav_marquer_localisation"
