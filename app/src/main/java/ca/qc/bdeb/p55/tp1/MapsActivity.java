@@ -48,9 +48,9 @@ import java.util.Date;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
     private static final String TAG = "ca.qc.bdeb.p55.tp1";
 
-    public static final String EXTRA_LIEUX = "ca.qc.bdeb.p55.esteban.labo2.EXTRA_LIEUX";
+    public static final String EXTRA_LatLng = "ca.qc.bdeb.p55.esteban.labo2.EXTRA_LatLng";
     public static final String EXTRA_RESULTAT_LIEUX = "ca.qc.bdeb.p55.intents.EXTRA_RESULTAT_LIEUX";
-    public static final int ACTIVITY2_RESULT = 1;
+    public static final int ENTREE_INFO_RESULT = 1;
 
 
     private static final int LOCATION_REQUEST_CODE = 1;
@@ -195,8 +195,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         Intent intent = new Intent(this, EntreesUtilisateurs.class);
-        intent.putExtra(EXTRA_LIEUX, latLng);
-        startActivityForResult(intent, ACTIVITY2_RESULT);
+        intent.putExtra(EXTRA_LatLng, latLng);
+        startActivityForResult(intent, ENTREE_INFO_RESULT);
 
     /*    mMap.addMarker(new MarkerOptions().position(latLng)
                 .title("Position Coureur")
@@ -214,16 +214,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ACTIVITY2_RESULT) {
+        if (requestCode == ENTREE_INFO_RESULT) {
             if ((resultCode == RESULT_OK) && (data != null)) {
-                Lieux lieu = (Lieux) data.getParcelableExtra(MapsActivity.EXTRA_RESULTAT_LIEUX);
+                Lieux lieu = data.getParcelableExtra(MapsActivity.EXTRA_RESULTAT_LIEUX);
 
-                LatLng latLng = new LatLng(lieu.getLatitude(), lieu.getLatitude());
 
-                mMap.addMarker(new MarkerOptions().position(latLng)
-                        .title("Position Coureur")
-                        .snippet("Départ"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+           //     LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
+                LatLng pos = new LatLng(45.5,-73.72);
+
+                mMap.addMarker(new MarkerOptions().position(pos)
+                        .title(lieu.getNom()));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
+
 
                 DBHelper dbHelper = DBHelper.getInstance(this);
                 dbHelper.ajouterLieux(lieu);
@@ -231,48 +233,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
-
-  /*  private void setPic() {
-        // Get the dimensions of the View
-        int targetW = imageView.getWidth();
-        int targetH = imageView.getHeight();
-
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-
-        BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        // Determine how much to scale down the image
-        int scaleFactor = Math.max(1, Math.min(photoW/targetW, photoH/targetH));
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-
-        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-        imageView.setImageBitmap(bitmap);
-    }
-
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  *//* prefix *//*
-                ".jpg",         *//* suffix *//*
-                storageDir      *//* directory *//*
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
-        return image;
-    }*/
 
     private void loadLieux() {
 
