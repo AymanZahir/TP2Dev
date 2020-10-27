@@ -73,4 +73,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
+    public void onClickAcceuil(MenuItem item){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

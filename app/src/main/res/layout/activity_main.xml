@@ -33,21 +33,6 @@
         android:layout_height="match_parent"
         tools:visibility="visible">
 
-        <!--    <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"></LinearLayout>
-        -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
@@ -57,7 +42,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Mes courses" />
+            app:title="Menu principale" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="403dp"
+            android:layout_height="266dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
+            app:srcCompat="@drawable/googlemapsimage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

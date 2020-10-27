@@ -7,17 +7,22 @@
     <item
         android:id="@+id/nav_accueil"
         android:icon="@drawable/ic_baseline_home_24"
-        android:onClick="onClickMap"
+        android:onClick="onClickAcceuil"
         android:title="Accueil" />
+    <item
+        android:id="@+id/nav_maps"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:onClick="onClickMap"
+        android:title="Maps" />
 
     <item
-        android:id="@+id/nav_rap_course"
+        android:id="@+id/nav_lieux_visités"
         android:icon="@drawable/ic_baseline_bar_chart_24"
         android:onClick="onClickRapports"
-        android:title="Rapport de mes courses" />
+        android:title="Liste des lieux visités" />
 
     <item
-        android:id="@+id/nav_lieux_favoris"
+        android:id="@+id/nav_lieux_visités_favoris"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="Lieux favoris" />
 
