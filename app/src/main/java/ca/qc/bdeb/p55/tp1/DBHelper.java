@@ -77,12 +77,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_LIEUX);
 
+        onCreate(sqLiteDatabase);
     }
 
     public void ajouterLieux(Lieux Lieux) {
         SQLiteDatabase db = this.getWritableDatabase();
-
 
         ContentValues values = new ContentValues();
         if (Lieux.getId() != -1) {

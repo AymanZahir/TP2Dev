@@ -27,6 +27,7 @@ public class Lieux implements Parcelable {
     }
 
     public Lieux(String nom, double latitude, double longitude, int type, String telephone, int imageResId, int favori, int nombreVisites) {
+        this.id = -1;
         this.nom = nom;
         this.latitude = latitude;
         this.longitude = longitude;

@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+    <!--    <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,30 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"></LinearLayout>
-
-        <!--  <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/coursesRecyclerView"
-              android:layout_width="357dp"
-              android:layout_height="455dp"
-              android:clipToPadding="false"
-              android:orientation="vertical"
-              android:padding="5dp"
-              app:layout_constraintBottom_toTopOf="@+id/btnAddFavoris"
-              app:layout_constraintTop_toBottomOf="@+id/toolbar_main"
-              tools:layout_editor_absoluteX="54dp" />-->
-
-        <!--        <Button
-                    android:id="@+id/btnAddFavoris"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:background="#A89E48"
-                    android:text="@string/textButtonAddFav"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorTextIcons"
-                    android:visibility="gone"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"/>-->
-
+        -->
          <androidx.appcompat.widget.Toolbar
              android:id="@+id/toolbar_main"
              android:layout_width="match_parent"
