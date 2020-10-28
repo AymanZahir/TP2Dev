@@ -1,32 +1,25 @@
 package ca.qc.bdeb.p55.tp1;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -40,15 +33,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
     private static final String TAG = "ca.qc.bdeb.p55.tp1";
 
-    public static final String EXTRA_LatLng = "ca.qc.bdeb.p55.esteban.labo2.EXTRA_LatLng";
+    public static final String EXTRA_LATLNG = "ca.qc.bdeb.p55.esteban.labo2.EXTRA_LatLng";
     public static final String EXTRA_RESULTAT_LIEUX = "ca.qc.bdeb.p55.intents.EXTRA_RESULTAT_LIEUX";
     public static final int ENTREE_INFO_RESULT = 1;
 
@@ -166,7 +154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapClick(LatLng latLng) {
         Intent intent = new Intent(this, EntreesUtilisateurs.class);
-        intent.putExtra(EXTRA_LatLng, latLng);
+        intent.putExtra(EXTRA_LATLNG, latLng);
         startActivityForResult(intent, ENTREE_INFO_RESULT);
     }
 

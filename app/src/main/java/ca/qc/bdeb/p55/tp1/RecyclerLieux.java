@@ -53,7 +53,6 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
 
         itemList = dbHelper.getToutLesLieux();
         if (itemList.size() == 0) {
-            //itemList.add(new Lieux("College Bois De Boulogne", 45.5380, -73.6760, 2, null, 1, 0, 4));
             for (Lieux l : itemList) {
                 dbHelper.ajouterLieux(l);
             }

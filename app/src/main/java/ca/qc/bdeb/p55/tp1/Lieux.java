@@ -10,11 +10,11 @@ public class Lieux implements Parcelable {
     private double longitude;
     private int type;
     private String telephone;
-    private int imageResId;
+    private byte[] imageResId;
     private int favori;
     private int nombreVisites;
 
-    public Lieux(long id, String nom, double latitude, double longitude, int type, String telephone, int imageResId, int favori, int nombreVisites) {
+    public Lieux(long id, String nom, double latitude, double longitude, int type, String telephone, byte[] imageResId, int favori, int nombreVisites) {
         this.id = id;
         this.nom = nom;
         this.latitude = latitude;
@@ -26,7 +26,7 @@ public class Lieux implements Parcelable {
         this.nombreVisites = nombreVisites;
     }
 
-    public Lieux(String nom, double latitude, double longitude, int type, String telephone, int imageResId, int favori, int nombreVisites) {
+    public Lieux(String nom, double latitude, double longitude, int type, String telephone, byte[] imageResId, int favori, int nombreVisites) {
         this.id = -1;
         this.nom = nom;
         this.latitude = latitude;
@@ -45,7 +45,7 @@ public class Lieux implements Parcelable {
         longitude =  in.readDouble();;
         type = in.readInt();
         telephone = in.readString();
-        imageResId =in.readInt();
+       // imageResId = in.readByte();
         favori = in.readInt();
         nombreVisites = in.readInt();
     }
@@ -75,7 +75,7 @@ public class Lieux implements Parcelable {
         parcel.writeDouble(longitude);
         parcel.writeInt(type);
         parcel.writeString(telephone);
-        parcel.writeInt(imageResId);
+        parcel.writeByteArray(imageResId);
         parcel.writeInt(favori);
         parcel.writeInt(nombreVisites);
     }
@@ -128,11 +128,11 @@ public class Lieux implements Parcelable {
         this.telephone = telephone;
     }
 
-    public int getImageResId() {
+    public byte[] getImageResId() {
         return imageResId;
     }
 
-    public void setImageResId(int imageResId) {
+    public void setImageResId(byte[] imageResId) {
         this.imageResId = imageResId;
     }
 

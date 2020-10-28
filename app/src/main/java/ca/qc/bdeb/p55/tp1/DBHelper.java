@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + LIEUX_LONGITUDE + " REAL NOT NULL,"
                 + LIEUX_TYPE + " INTEGER NOT NULL,"
                 + LIEUX_TELEPHONE + " TEXT,"
-                + LIEUX_PHOTO + " BLOB NOT NULL,"
+                + LIEUX_PHOTO + " BLOB ,"
                 + LIEUX_FAVORI + " INTEGER NOT NULL,"
                 + LIEUX_NOMBRE_VISITE + " INTEGER NOT NULL)";
         sqLiteDatabase.execSQL(sqlLieux);
@@ -117,7 +117,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return nbDelete;
     }
 
-    //À REVOIR
     public void modifierLieux(Lieux Lieux) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -137,12 +136,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+
     public Lieux getLieux(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_LIEUX, new String[]{LIEUX_ID, LIEUX_NOM, LIEUX_LATTITUDE, LIEUX_LONGITUDE, LIEUX_TELEPHONE, LIEUX_PHOTO, LIEUX_FAVORI, LIEUX_NOMBRE_VISITE}, LIEUX_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
 
-        Lieux lieux = new Lieux(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), cursor.getInt(4), cursor.getString(5), cursor.getInt(6), cursor.getInt(7), cursor.getInt(8));
+        Lieux lieux = new Lieux(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), cursor.getInt(4), cursor.getString(5), cursor.getBlob(6), cursor.getInt(7), cursor.getInt(8));
         cursor.close();
         db.close();
 
@@ -156,7 +156,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_LIEUX, null, null, null, null, null, null, null);
         if (cursor != null) {
             for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                listePersonne.add(new Lieux(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), cursor.getInt(4), cursor.getString(5), cursor.getInt(6), cursor.getInt(7), cursor.getInt(8)));
+                listePersonne.add(new Lieux(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2), cursor.getDouble(3), cursor.getInt(4), cursor.getString(5), cursor.getBlob(6), cursor.getInt(7), cursor.getInt(8)));
             }
             cursor.close();
         }
