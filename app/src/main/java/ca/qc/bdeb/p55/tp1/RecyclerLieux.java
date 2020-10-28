@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RecyclerLieux extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,7 +29,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
     private ArrayList<Lieux> itemList = new ArrayList<>();
     private LieuxAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    Menu menuBarre;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
 
@@ -38,7 +40,6 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
-
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer);
 
@@ -107,10 +108,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return true;
-    }
+
 
     public void onClickRapports(MenuItem item) {
         Intent intent = new Intent(this, RecyclerLieux.class);
@@ -122,13 +120,12 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         startActivity(intent);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
+    }
 
     public void notifyItemSelected(int position) {
-
-        //ajouterContact(contactList.get(position));
-
-        // Snackbar snackbar = Snackbar.make(recyclerView, contactList.get(position).getNom() + " a été sélectionné", Snackbar.LENGTH_SHORT);
-        //snackbar.show();
     }
 
 
@@ -145,4 +142,55 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         dbHelper.modifierLieux(itemList.get(position));
         adapter.notifyItemChanged(position);
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.trierItemCroissant:
+                trierOrdreCroissant();
+                return true;
+            case R.id.trierItemDecroissant:
+                trierOrdreDeCroissant();
+                return true;
+            case R.id.trierItemFavoris:
+                trierFavoris();
+                return true;
+
+            default :
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+    public void trierOrdreCroissant (){
+        Collections.sort(itemList, new Comparator<Lieux>() {
+            @Override
+            public int compare(Lieux u1, Lieux u2) {
+                return u1.getNom().toLowerCase().compareTo(u2.getNom().toLowerCase());
+            }
+        });
+        adapter.notifyDataSetChanged();
+    }
+    public void trierOrdreDeCroissant (){
+        trierOrdreCroissant();
+        Collections.reverse(itemList);
+
+        adapter.notifyDataSetChanged();
+    }
+
+    public void trierFavoris(){
+        Collections.sort(itemList, new Comparator<Lieux>() {
+            @Override
+            public int compare(Lieux u1, Lieux u2) {
+                if (u1.getFavori() < u2.getFavori())
+                    return 1;
+                if (u1.getFavori() > u2.getFavori())
+                    return -1;
+                return 0;
+            }
+
+        });
+        adapter.notifyDataSetChanged();
+    }
+
+
+
 }

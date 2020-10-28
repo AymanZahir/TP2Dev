@@ -15,6 +15,9 @@
     <item
         android:title="@string/trier_par_odre_decroissant"
         android:id="@+id/trierItemDecroissant"/>
+    <item
+        android:title="@string/trier_par_favoris"
+        android:id="@+id/trierItemFavoris"/>
 
     <item
         android:title="@string/quitter"

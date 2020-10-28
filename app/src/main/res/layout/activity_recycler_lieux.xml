@@ -9,7 +9,6 @@
     android:animateLayoutChanges="true"
     android:background="@color/colorBackground"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
     tools:openDrawer="start">
 
 

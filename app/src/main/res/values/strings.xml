@@ -23,5 +23,6 @@
     <string name="trier_par_odre_decroissant">Trier par ordre decroissant</string>
     <string name="quitter">Quitter</string>
     <string name="mes_courses">Mes courses</string>
+    <string name="trier_par_favoris">Trier par favoris</string>
 
 </resources>
