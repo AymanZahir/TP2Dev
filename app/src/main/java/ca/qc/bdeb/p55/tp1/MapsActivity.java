@@ -165,11 +165,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if ((resultCode == RESULT_OK) && (data != null)) {
                 Lieux lieu = data.getParcelableExtra(MapsActivity.EXTRA_RESULTAT_LIEUX);
 
-                LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
 
-                mMap.addMarker(new MarkerOptions().position(pos)
-                        .title(lieu.getNom()));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
+                ajouterMarqueur(lieu);
 
                 DBHelper dbHelper = DBHelper.getInstance(this);
                 dbHelper.ajouterLieux(lieu);
@@ -182,9 +179,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DBHelper dbHelper = DBHelper.getInstance(this);
 
         for (Lieux lieu : dbHelper.getToutLesLieux()) {
-            LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(pos)
-                    .title(lieu.getNom()));
+
+            ajouterMarqueur(lieu);
+
+        }
+
+    }
+
+
+    private void ajouterMarqueur(Lieux lieu) {
+        LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
+
+        switch (lieu.getType()) {
+            case 1:
+                mMap.addMarker(new MarkerOptions().position(pos)
+                        .title(lieu.getNom())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
+                break;
+            case 2:
+                mMap.addMarker(new MarkerOptions().position(pos)
+                        .title(lieu.getNom())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
+                break;
+            case 3:
+                mMap.addMarker(new MarkerOptions().position(pos)
+                        .title(lieu.getNom())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
+                break;
         }
 
     }

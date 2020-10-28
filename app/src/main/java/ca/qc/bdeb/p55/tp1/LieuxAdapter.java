@@ -17,6 +17,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
 
     public interface OnItemClickListener {
         void OnItemClick(int position);
+        void onFavoriClick(int position, ImageView imageViewFavori);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -58,6 +59,20 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
                 }
             });
 
+            imageFavori.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // vérifier que le listener n'est pas null
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        // la position est valide?
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onFavoriClick(position, imageFavori);
+                        }
+                    }
+                }
+            });
+
         }
     }
 
@@ -92,7 +107,11 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
         }
         holder.txtViewTelephone.setText(item.getTelephone());
 
-
+        if (item.getFavori() == 0) {
+            holder.imageFavori.setImageResource(R.drawable.ic_baseline_star_border_24);
+        } else {
+            holder.imageFavori.setImageResource(R.drawable.ic_baseline_star_24);
+        }
     }
 
     @Override

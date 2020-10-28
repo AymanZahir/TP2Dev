@@ -40,6 +40,7 @@ public class EntreesUtilisateurs extends AppCompatActivity {
 
     private EditText editTextNom;
     private EditText editTextTelephone;
+    private EditText editVisites;
     private RadioGroup radioGroup;
     private RadioButton radioButtonType;
     private ImageView imageLieu;
@@ -48,6 +49,8 @@ public class EntreesUtilisateurs extends AppCompatActivity {
 
     private String currentPhotoPath;
     private Bitmap bitmapPhoto;
+
+    private  int nombreVisites = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class EntreesUtilisateurs extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         radioButtonType = findViewById(radioGroup.getCheckedRadioButtonId());
         imageLieu = findViewById(R.id.imageLieu);
+        editVisites = findViewById(R.id.editVisites);
 
         latLng = getIntent().getParcelableExtra(MapsActivity.EXTRA_LATLNG);
     }
@@ -116,8 +120,13 @@ public class EntreesUtilisateurs extends AppCompatActivity {
                 type = 0;
                 break;
         }
+
+        if(!editVisites.getText().toString().isEmpty()) {
+            nombreVisites = Integer.parseInt(editVisites.getText().toString());
+        }
+
         Lieux lieu = new Lieux(editTextNom.getText().toString(), latLng.latitude, latLng.longitude, type, editTextTelephone.
-                getText().toString(), DbBitmapUtility.getBytes(bitmapPhoto), 0, 2);
+                getText().toString(), DbBitmapUtility.getBytes(bitmapPhoto), 0, 0);
         Intent intentMessage = new Intent();
         intentMessage.putExtra(MapsActivity.EXTRA_RESULTAT_LIEUX, lieu);
         setResult(RESULT_OK, intentMessage);

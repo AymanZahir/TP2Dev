@@ -14,13 +14,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class RecyclerLieux extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class RecyclerLieux extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
     private ArrayList<Lieux> itemList = new ArrayList<>();
@@ -65,6 +66,28 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         adapter = new LieuxAdapter(itemList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        configAdapter();
+    }
+
+    private void configAdapter() {
+
+        adapter.setOnItemClickListener(new LieuxAdapter.OnItemClickListener() {
+
+            @Override
+            public void OnItemClick(int position) {
+            }
+
+            @Override
+            public void onFavoriClick(int position, ImageView imageViewFavori) {
+                ajouterFavori(position, imageViewFavori);
+            }
+
+        /*    @Override
+            public void onDeleteClick(int position) {
+                DeleteItem(position);
+            }*/
+        });
     }
 
     @Override
@@ -96,5 +119,19 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
     public void onClickMap(MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
+    }
+
+    //Ajoute le contact au favori et change l'étoile de couleur
+    public void ajouterFavori(int position, ImageView imageViewFavori) {
+
+        if (itemList.get(position).getFavori() == 0) {
+            itemList.get(position).setFavori(0);
+            imageViewFavori.setImageResource(R.drawable.ic_baseline_star_border_24);
+            adapter.notifyItemChanged(position);
+        } else {
+            itemList.get(position).setFavori(1);
+            imageViewFavori.setImageResource(R.drawable.ic_baseline_star_24);
+            adapter.notifyItemChanged(position);
+        }
     }
 }

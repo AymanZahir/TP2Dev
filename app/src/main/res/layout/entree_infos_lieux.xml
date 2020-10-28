@@ -24,12 +24,12 @@
         style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="150dp"
         android:layout_height="58dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="4dp"
         android:onClick="ajoutPhoto"
         android:text="Ajouter une image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTelephone" />
+        app:layout_constraintTop_toBottomOf="@+id/editVisites" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -88,14 +88,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTelephone"
+        android:id="@+id/editVisites"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="4dp"
         android:ems="10"
-        android:inputType="phone"
+        android:hint="Nombres_Visites"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelephone2" />
+
+    <EditText
+        android:id="@+id/editTextTelephone2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
         android:hint="Téléphone"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNom" />
 
