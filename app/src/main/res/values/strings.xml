@@ -9,5 +9,20 @@
     <string name="typeBleu">Point eau potable</string>
     <string name="typeVert">Aire de repos</string>
     <string name="typeOrange">Point observation</string>
+    <string name="accueil">Accueil</string>
+    <string name="marquer">Marquer un lieu</string>
+    <string name="lieux_ajoutes">Lieux enregistrees</string>
+    <string name="lieux_favoris">Lieux favoris</string>
+    <string name="changer_profile_deconnexion">Changer de profil/Déconnexion</string>
+    <string name="communiquer">Communiquer</string>
+    <string name="partager">Partager</string>
+    <string name="notez_app">Notez notre application !</string>
+    <string name="gerez_mes_courses">Gérer mes courses</string>
+    <string name="partagez">Partagez</string>
+    <string name="aide">Aide</string>
+    <string name="trier_par_odre_croissant">Trier par ordre croissant</string>
+    <string name="trier_par_odre_decroissant">Trier par ordre decroissant</string>
+    <string name="quitter">Quitter</string>
+    <string name="mes_courses">Mes courses</string>
 
 </resources>

@@ -3,18 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="Partagez"
+        android:title="@string/partagez"
         android:id="@+id/share"/>
 
     <item
-        android:title="Aide"
+        android:title="@string/aide"
         android:id="@+id/aide"/>
     <item
-        android:title="Trier par ordre croissant"
-        android:id="@+id/trierItem"/>
+        android:title="@string/trier_par_odre_croissant"
+        android:id="@+id/trierItemCroissant"/>
+    <item
+        android:title="@string/trier_par_odre_decroissant"
+        android:id="@+id/trierItemDecroissant"/>
 
     <item
-        android:title="Quitter"
+        android:title="@string/quitter"
         android:id="@+id/quitter"/>
 
 

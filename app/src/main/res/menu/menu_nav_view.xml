@@ -7,23 +7,23 @@
     <item
         android:id="@+id/nav_accueil"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Accueil" />
+        android:title="@string/accueil" />
     <item
         android:id="@+id/nav_marquer_localisation"
         android:icon="@drawable/ic_baseline_location_on_24"
         android:onClick="onClickMap"
-        android:title="Marquer un lieu" />
+        android:title="@string/marquer" />
 
     <item
         android:id="@+id/nav_rap_course"
         android:icon="@drawable/ic_baseline_bar_chart_24"
         android:onClick="onClickRapports"
-        android:title="Lieux enregistrees" />
+        android:title="@string/lieux_ajoutes" />
 
     <item
         android:id="@+id/nav_lieux_favoris"
         android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="Lieux favoris" />
+        android:title="@string/lieux_favoris" />
 
 </group>
 
@@ -41,7 +41,7 @@
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_baseline_transit_enterexit_24"
-            android:title="Changer de profil/Déconnexion" />
+            android:title="@string/changer_profile_deconnexion" />
     </group>
 </menu>
 </item>
@@ -53,12 +53,12 @@
     <item
         android:id="@+id/nav_share"
         android:icon="@drawable/ic_baseline_share_24"
-        android:title="Partager" />
+        android:title="@string/partager" />
 
     <item
         android:id="@+id/nav_rate"
         android:icon="@drawable/ic_baseline_rate_review_24"
-        android:title="Notez notre application !" />
+        android:title="@string/notez_app" />
     </group>
 
     </menu>
