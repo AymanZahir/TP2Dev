@@ -35,10 +35,7 @@
                      android:name="android.support.FILE_PROVIDER_PATHS"
                      android:resource="@xml/file_paths"></meta-data>
              </provider>
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

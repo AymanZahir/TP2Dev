@@ -3,64 +3,60 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<group android:checkableBehavior="single">
-    <item
-        android:id="@+id/nav_accueil"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/accueil" />
-    <item
-        android:id="@+id/nav_marquer_localisation"
-        android:icon="@drawable/ic_baseline_location_on_24"
-        android:onClick="onClickMap"
-        android:title="@string/marquer" />
-
-    <item
-        android:id="@+id/nav_rap_course"
-        android:icon="@drawable/ic_baseline_bar_chart_24"
-        android:onClick="onClickRapports"
-        android:title="@string/lieux_ajoutes" />
-
-    <item
-        android:id="@+id/nav_lieux_favoris"
-        android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="@string/lieux_favoris" />
-
-</group>
-
-<item android:title="Profile">
-
-<menu>
-
     <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_marquer_localisation"
+            android:icon="@drawable/ic_baseline_location_on_24"
+            android:onClick="onClickMap"
+            android:title="@string/Map" />
 
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_baseline_account_circle_24"
-            android:title="Profile" />
+            android:id="@+id/nav_rap_course"
+            android:icon="@drawable/ic_baseline_bar_chart_24"
+            android:onClick="onClickRapports"
+            android:title="@string/lieux_ajoutes" />
 
         <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_baseline_transit_enterexit_24"
-            android:title="@string/changer_profile_deconnexion" />
-    </group>
-</menu>
-</item>
+            android:id="@+id/nav_lieux_favoris"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="@string/lieux_favoris" />
 
-<item android:title="Communicate">
-
-<menu>
-    <group android:checkableBehavior="single">
-    <item
-        android:id="@+id/nav_share"
-        android:icon="@drawable/ic_baseline_share_24"
-        android:title="@string/partager" />
-
-    <item
-        android:id="@+id/nav_rate"
-        android:icon="@drawable/ic_baseline_rate_review_24"
-        android:title="@string/notez_app" />
     </group>
 
-    </menu>
+    <item android:title="Profile">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_baseline_account_circle_24"
+                    android:title="Profile" />
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_baseline_transit_enterexit_24"
+                    android:title="@string/changer_profile_deconnexion" />
+            </group>
+        </menu>
     </item>
-    </menu>
+
+    <item android:title="Communicate">
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_baseline_share_24"
+                    android:title="@string/partager" />
+
+                <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@drawable/ic_baseline_rate_review_24"
+                    android:title="@string/notez_app" />
+            </group>
+
+        </menu>
+    </item>
+</menu>

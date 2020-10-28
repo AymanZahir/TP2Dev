@@ -134,7 +134,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
 
     //Ajoute le contact au favori et change l'étoile de couleur
     public void ajouterFavori(int position, ImageView imageViewFavori) {
-
+        DBHelper dbHelper = DBHelper.getInstance(this);
         if (itemList.get(position).getFavori() == 1) {
             itemList.get(position).setFavori(0);
             imageViewFavori.setImageResource(R.drawable.ic_baseline_star_24);
@@ -142,6 +142,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
             itemList.get(position).setFavori(1);
             imageViewFavori.setImageResource(R.drawable.ic_baseline_star_border_24);
         }
+        dbHelper.modifierLieux(itemList.get(position));
         adapter.notifyItemChanged(position);
     }
 }

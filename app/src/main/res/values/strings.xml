@@ -9,8 +9,7 @@
     <string name="typeBleu">Point eau potable</string>
     <string name="typeVert">Aire de repos</string>
     <string name="typeOrange">Point observation</string>
-    <string name="accueil">Accueil</string>
-    <string name="marquer">Marquer un lieu</string>
+    <string name="Map">Map</string>
     <string name="lieux_ajoutes">Lieux enregistrees</string>
     <string name="lieux_favoris">Lieux favoris</string>
     <string name="changer_profile_deconnexion">Changer de profil/Déconnexion</string>
