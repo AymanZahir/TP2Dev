@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class EntreesUtilisateurs extends AppCompatActivity {
     private EditText editTextNom;
     private EditText editTextTelephone;
     private RadioGroup radioGroup;
+    private RadioButton radioButtonType;
     private int imageLieuID;
 
     private LatLng latLng;
@@ -50,7 +52,7 @@ public class EntreesUtilisateurs extends AppCompatActivity {
         editTextNom = findViewById(R.id.editTextNom);
         editTextTelephone = findViewById(R.id.editTextTelephone);
         radioGroup = findViewById(R.id.radioGroup);
-
+        radioButtonType = findViewById(radioGroup.getCheckedRadioButtonId());
 
         latLng = getIntent().getParcelableExtra(MapsActivity.EXTRA_LatLng);
 
@@ -77,23 +79,32 @@ public class EntreesUtilisateurs extends AppCompatActivity {
             continuer = true;
         }
 
-
-        if (editTextTelephone.getText().toString().trim().isEmpty()) {
-            editTextTelephone.setError("Vous devez saisir un Prenom");
-            continuer = false;
-        } else {
-            editTextTelephone.setError(null); // Enlève l’erreur du champ de saisie
-            continuer = true;
-        }
-
         if (continuer) {
             transmettreInfos();
         }
     }
 
     private void transmettreInfos() {
-      //  Lieux lieu = new Lieux(editTextNom.getText().toString(), latLng.latitude, latLng.longitude, radioGroup.getCheckedRadioButtonId(), editTextTelephone.getText().toString(), 0, 0, 2);
-        Lieux lieu = new Lieux("test", 46.5380, -73.6760, 2, null, 1, 0, 4);
+        int type = 0;
+        radioButtonType = findViewById(radioGroup.getCheckedRadioButtonId());
+
+        switch (radioButtonType.getText().toString()) {
+            case "Point eau potable":
+                type = 1;
+                break;
+            case "Aire de repos":
+                type = 2;
+                break;
+            case "Point observation":
+                type = 3;
+                break;
+            default:
+                type = 0;
+                break;
+        }
+        Lieux lieu = new Lieux(editTextNom.getText().toString(), latLng.latitude, latLng.longitude, type, editTextTelephone.
+                getText().toString(), 0, 0, 2);
+        //  Lieux lieu = new Lieux("test", 46.5380, -73.6760, 2, null, 1, 0, 4);
         Intent intentMessage = new Intent();
         intentMessage.putExtra(MapsActivity.EXTRA_RESULTAT_LIEUX, lieu);
         setResult(RESULT_OK, intentMessage);

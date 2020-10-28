@@ -57,15 +57,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationClient;
 
-    private double latitude = 0;
-    private double longitude = 0;
-
-    public static final int REQUEST_TAKE_PHOTO = 1;
-
-    private ImageView imageView;
-    private Button photoButton;
-
-    private String currentPhotoPath;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,43 +165,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapClick(LatLng latLng) {
-        //  Toast.makeText(this, "onMyLocationClick \n" + latLng, Toast.LENGTH_LONG).show();
-
-        // Creating a marker
-  /*      MarkerOptions markerOptions = new MarkerOptions();
-
-        // Setting the position for the marker
-        markerOptions.position(latLng);
-
-        // Setting the title for the marker.
-        // This will be displayed on taping the marker
-        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-
-        // Clears the previously touched position
-        mMap.clear();
-
-        // Animating to the touched position
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-
-        // Placing a marker on the touched position
-        mMap.addMarker(markerOptions);*/
-
-
         Intent intent = new Intent(this, EntreesUtilisateurs.class);
         intent.putExtra(EXTRA_LatLng, latLng);
         startActivityForResult(intent, ENTREE_INFO_RESULT);
-
-    /*    mMap.addMarker(new MarkerOptions().position(latLng)
-                .title("Position Coureur")
-                .snippet("Départ"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-
-        DBHelper dbHelper = DBHelper.getInstance(this);
-
-        Lieux lieu = new Lieux("lieuxTest", latLng.latitude, latLng.longitude, 2, "156546", 1, 1, 4);
-
-        dbHelper.ajouterLieux(lieu);*/
-
     }
 
     @Override
@@ -218,18 +177,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if ((resultCode == RESULT_OK) && (data != null)) {
                 Lieux lieu = data.getParcelableExtra(MapsActivity.EXTRA_RESULTAT_LIEUX);
 
-
-           //     LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
-                LatLng pos = new LatLng(45.5,-73.72);
+                LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
 
                 mMap.addMarker(new MarkerOptions().position(pos)
                         .title(lieu.getNom()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
 
-
                 DBHelper dbHelper = DBHelper.getInstance(this);
                 dbHelper.ajouterLieux(lieu);
-
             }
         }
     }

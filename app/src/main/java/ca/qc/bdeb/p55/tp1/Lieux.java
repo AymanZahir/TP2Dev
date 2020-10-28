@@ -39,6 +39,15 @@ public class Lieux implements Parcelable {
     }
 
     protected Lieux(Parcel in) {
+        id = in.readLong();
+        nom = in.readString();
+        latitude = in.readDouble();
+        longitude =  in.readDouble();;
+        type = in.readInt();
+        telephone = in.readString();
+        imageResId =in.readInt();
+        favori = in.readInt();
+        nombreVisites = in.readInt();
     }
 
     public static final Creator<Lieux> CREATOR = new Creator<Lieux>() {
@@ -60,6 +69,15 @@ public class Lieux implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(nom);
+        parcel.writeDouble(latitude);
+        parcel.writeDouble(longitude);
+        parcel.writeInt(type);
+        parcel.writeString(telephone);
+        parcel.writeInt(imageResId);
+        parcel.writeInt(favori);
+        parcel.writeInt(nombreVisites);
     }
 
     public long getId() {
