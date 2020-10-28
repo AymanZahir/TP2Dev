@@ -17,6 +17,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
 
     public interface OnItemClickListener {
         void OnItemClick(int position);
+
         void onFavoriClick(int position, ImageView imageViewFavori);
     }
 
@@ -88,12 +89,12 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
         return ivh;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Lieux item = rviList.get(position); // pas besoin d'appeller findViewById
+        Lieux item = rviList.get(position);
         holder.txtViewNom.setText(item.getNom());
-        holder.txtViewNbr.setText("Nombres de visites : " + item.getNombreVisites());
+        String texte = "Nombres de visites : " + item.getNombreVisites();
+        holder.txtViewNbr.setText(texte);
         switch (item.getType()) {
             case 1:
                 holder.txtViewType.setText("Point d'eau potable");

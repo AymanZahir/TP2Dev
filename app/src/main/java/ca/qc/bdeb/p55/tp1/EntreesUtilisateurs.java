@@ -50,7 +50,7 @@ public class EntreesUtilisateurs extends AppCompatActivity {
     private String currentPhotoPath;
     private Bitmap bitmapPhoto;
 
-    private  int nombreVisites = 1;
+    private int nombreVisites = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,12 +121,13 @@ public class EntreesUtilisateurs extends AppCompatActivity {
                 break;
         }
 
-        if(!editVisites.getText().toString().isEmpty()) {
+       if(!editVisites.getText().toString().isEmpty()) {
             nombreVisites = Integer.parseInt(editVisites.getText().toString());
         }
 
-        Lieux lieu = new Lieux(editTextNom.getText().toString(), latLng.latitude, latLng.longitude, type, editTextTelephone.
-                getText().toString(), DbBitmapUtility.getBytes(bitmapPhoto), 0, 0);
+
+        Lieux lieu = new Lieux(editTextNom.getText().toString(), latLng.latitude, latLng.longitude, type,
+                editTextTelephone.getText().toString(), DbBitmapUtility.getBytes(bitmapPhoto), 0, nombreVisites);
         Intent intentMessage = new Intent();
         intentMessage.putExtra(MapsActivity.EXTRA_RESULTAT_LIEUX, lieu);
         setResult(RESULT_OK, intentMessage);
@@ -205,7 +206,7 @@ public class EntreesUtilisateurs extends AppCompatActivity {
         int photoH = bmOptions.outHeight;
 
         // Determine how much to scale down the image
-        int scaleFactor = Math.max(1, Math.min(photoW/targetW, photoH/targetH));
+        int scaleFactor = Math.max(1, Math.min(photoW / targetW, photoH / targetH));
 
         // Decode the image file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
@@ -213,8 +214,8 @@ public class EntreesUtilisateurs extends AppCompatActivity {
 
         bitmapPhoto = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         imageLieu.setImageBitmap(bitmapPhoto);
-     //   DBHelper dbHelper = DBHelper.getInstance(this);
-      //  dbHelper.addImageData("image", DbBitmapUtility.getBytes(bitmap) );
+        //   DBHelper dbHelper = DBHelper.getInstance(this);
+        //  dbHelper.addImageData("image", DbBitmapUtility.getBytes(bitmap) );
     }
 
 

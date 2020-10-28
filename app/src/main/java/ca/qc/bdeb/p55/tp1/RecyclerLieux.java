@@ -76,6 +76,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
 
             @Override
             public void OnItemClick(int position) {
+                notifyItemSelected(position);
             }
 
             @Override
@@ -121,17 +122,26 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         startActivity(intent);
     }
 
+
+    public void notifyItemSelected(int position) {
+
+        //ajouterContact(contactList.get(position));
+
+        // Snackbar snackbar = Snackbar.make(recyclerView, contactList.get(position).getNom() + " a été sélectionné", Snackbar.LENGTH_SHORT);
+        //snackbar.show();
+    }
+
+
     //Ajoute le contact au favori et change l'étoile de couleur
     public void ajouterFavori(int position, ImageView imageViewFavori) {
 
-        if (itemList.get(position).getFavori() == 0) {
+        if (itemList.get(position).getFavori() == 1) {
             itemList.get(position).setFavori(0);
-            imageViewFavori.setImageResource(R.drawable.ic_baseline_star_border_24);
-            adapter.notifyItemChanged(position);
+            imageViewFavori.setImageResource(R.drawable.ic_baseline_star_24);
         } else {
             itemList.get(position).setFavori(1);
-            imageViewFavori.setImageResource(R.drawable.ic_baseline_star_24);
-            adapter.notifyItemChanged(position);
+            imageViewFavori.setImageResource(R.drawable.ic_baseline_star_border_24);
         }
+        adapter.notifyItemChanged(position);
     }
 }
