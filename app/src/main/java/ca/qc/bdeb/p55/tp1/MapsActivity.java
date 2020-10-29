@@ -47,18 +47,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String EXTRA_LATLNG = "ca.qc.bdeb.p55.esteban.labo2.EXTRA_LatLng";
     public static final String EXTRA_RESULTAT_LIEUX = "ca.qc.bdeb.p55.intents.EXTRA_RESULTAT_LIEUX";
     public static final int ENTREE_INFO_RESULT = 1;
-
-
     private static final int LOCATION_REQUEST_CODE = 1;
+
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationClient;
 
     private double latitude;
     private double longitude;
 
-    NavigationView navigationView;
-    DrawerLayout drawerLayout;
-
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +64,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         Toolbar toolbar = findViewById(R.id.toolbar_main);
-       // setSupportActionBar(toolbar);
 
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer);
@@ -86,6 +83,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
+    }
+
+    public void onClickMap(MenuItem item) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+    public void onClickLieuxFavoris(MenuItem item) {
+        Intent intent = new Intent(this, RecyclerLieux.class);
+        startActivity(intent);
     }
 
     @Override
@@ -110,15 +116,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onClickRapports(MenuItem item) {
-        Intent intent = new Intent(this, RecyclerLieux.class);
-        startActivity(intent);
-    }
-
-    public void onClickMap(MenuItem item) {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-    public void onClickLieuxFavoris(MenuItem item) {
         Intent intent = new Intent(this, RecyclerLieux.class);
         startActivity(intent);
     }

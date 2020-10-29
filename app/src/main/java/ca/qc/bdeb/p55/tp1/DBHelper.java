@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
@@ -40,7 +39,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String USER_DISTANCE_MAX = "distance_max";
     private static final String USER_DISTANCE_MIN = "distance_min";
     private static final String USER_DISTANCE_PARCOURUE = "distance_parcourue";
-
 
     private DBHelper(@NonNull Context context) {
         super(context, DB_NAME, null, DBVERSION);
@@ -136,7 +134,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
     public Lieux getLieux(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_LIEUX, new String[]{LIEUX_ID, LIEUX_NOM, LIEUX_LATTITUDE, LIEUX_LONGITUDE, LIEUX_TELEPHONE, LIEUX_PHOTO, LIEUX_FAVORI, LIEUX_NOMBRE_VISITE}, LIEUX_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
@@ -173,10 +170,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return image;
     }
 
-
     public void ajouterUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
-
 
         ContentValues values = new ContentValues();
         if (user.getId() != -1) {
@@ -203,6 +198,46 @@ public class DBHelper extends SQLiteOpenHelper {
         return nbDelete;
     }
 
+    public void modifierUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(USER_NOM, user.getNom());
+        values.put(USER_DISTANCE_MAX, user.getDistance_min());
+        values.put(USER_DISTANCE_MIN, user.getDistance_max());
+        values.put(USER_DISTANCE_PARCOURUE, "" + user.getDistance_parcourue());
 
+        db.update(TABLE_USER, values, USER_ID + " = ?", new String[]{"" + user.getId()});
+
+        db.close();
+    }
+
+    public User getUser(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USER, new String[]{USER_ID, USER_NOM, USER_DISTANCE_MAX, USER_DISTANCE_MIN, USER_DISTANCE_PARCOURUE}, USER_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null) cursor.moveToFirst();
+
+        User user = new User(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4));
+        cursor.close();
+        db.close();
+
+        return user;
+    }
+
+    public ArrayList<User> getToutLesUsers() {
+
+        ArrayList<User> listeUser = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USER, null, null, null, null, null, null, null);
+        if (cursor != null) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                listeUser.add(new User(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4)));
+            }
+            cursor.close();
+        }
+
+        db.close();
+
+        return listeUser;
+    }
 }
