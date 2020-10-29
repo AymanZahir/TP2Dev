@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +23,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 
 public class RecyclerLieux extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,16 +31,26 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
     private ArrayList<Lieux> itemList = new ArrayList<>();
     private LieuxAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    Menu menuBarre;
+    private int croissant = -1;
     NavigationView navigationView;
+
     DrawerLayout drawerLayout;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String languageToLoad  = "en";
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_recycler_lieux);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_main);
+        toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer);
@@ -71,6 +83,8 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         configAdapter();
     }
 
+
+
     private void configAdapter() {
 
         adapter.setOnItemClickListener(new LieuxAdapter.OnItemClickListener() {
@@ -85,10 +99,6 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
                 ajouterFavori(position, imageViewFavori);
             }
 
-        /*    @Override
-            public void onDeleteClick(int position) {
-                DeleteItem(position);
-            }*/
         });
     }
 
@@ -140,6 +150,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
             imageViewFavori.setImageResource(R.drawable.ic_baseline_star_border_24);
         }
         dbHelper.modifierLieux(itemList.get(position));
+        Toast.makeText(getApplicationContext(),"Ce lieu a été ajouté au favoris",Toast.LENGTH_LONG).show();
         adapter.notifyItemChanged(position);
     }
     @Override
@@ -153,6 +164,19 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
                 return true;
             case R.id.trierItemFavoris:
                 trierFavoris();
+                return true;
+            case R.id.changerLangueItem:
+                //TODO Changer vers la langue et update interface
+                return true;
+            case R.id.trierListe:
+                if(croissant== -1 || croissant == 0) {
+                    trierOrdreCroissant();
+                    croissant = 1;
+                }
+                else if (croissant ==1 ) {
+                    trierOrdreDeCroissant();
+                    croissant = 0;
+                }
                 return true;
 
             default :
@@ -190,6 +214,10 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         });
         adapter.notifyDataSetChanged();
     }
+
+
+
+
 
 
 

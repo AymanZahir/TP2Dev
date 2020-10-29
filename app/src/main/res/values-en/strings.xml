@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TP1</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
+    <string name="Map">Map</string>
+    <string name="lieux_course">Mes courses</string>
+    <string name="typeBleu">Water point</string>
+    <string name="typeVert">Rest area</string>
+    <string name="typeOrange">Observation point</string>
+    <string name="accueil">Home</string>
+    <string name="marquer">Mark a place</string>
+    <string name="lieux_ajoutes">Saved places</string>
+    <string name="lieux_favoris">Favorites places</string>
+    <string name="changer_profile_deconnexion">Switch profile/Logout</string>
+    <string name="communiquer">Communicate</string>
+    <string name="partager">Share</string>
+    <string name="notez_app">Rate our app !</string>
+    <string name="gerez_mes_courses">Manage my runs</string>
+    <string name="partagez">Share</string>
+    <string name="aide">Help</string>
+    <string name="trier_par_odre_croissant">Sort by ascending order</string>
+    <string name="trier_par_odre_decroissant">Sort by descending order</string>
+    <string name="quitter">Exit</string>
+    <string name="mes_courses">My runs</string>
+    <string name="trier_par_favoris">Sort by favorites</string>
+    <string name="changerLangue">Switch to french</string>
+
+</resources>

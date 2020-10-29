@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">TP1</string>
     <string name="title_activity_maps">Map</string>
 
@@ -27,7 +29,4 @@
     <string name="mes_courses">Mes courses</string>
     <string name="trier_par_favoris">Trier par favoris</string>
     <string name="changerLangue">Changer langue vers anglais</string>
-
-
-
 </resources>

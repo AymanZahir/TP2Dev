@@ -20,6 +20,10 @@
         android:id="@+id/trierItemFavoris"/>
 
     <item
+        android:title="@string/changerLangue"
+        android:id="@+id/changerLangueItem"/>
+
+    <item
         android:title="@string/quitter"
         android:id="@+id/quitter"/>
 

@@ -16,10 +16,7 @@
             android:onClick="onClickRapports"
             android:title="@string/lieux_ajoutes" />
 
-        <item
-            android:id="@+id/nav_lieux_favoris"
-            android:icon="@drawable/ic_baseline_favorite_24"
-            android:title="@string/lieux_favoris" />
+
 
     </group>
 
@@ -42,7 +39,7 @@
         </menu>
     </item>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communiquer">
 
         <menu>
             <group android:checkableBehavior="single">
