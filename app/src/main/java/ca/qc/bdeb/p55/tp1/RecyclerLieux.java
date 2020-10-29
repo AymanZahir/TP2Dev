@@ -41,8 +41,8 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String languageToLoad  = "en";
-        Locale locale = new Locale(languageToLoad);
+        String langage  = "en";
+        Locale locale = new Locale(langage);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -156,7 +156,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
                 trierOrdreCroissant();
                 return true;
             case R.id.trierItemDecroissant:
-                trierOrdreDeCroissant();
+                trierOrdreDecroissant();
                 return true;
             case R.id.trierItemFavoris:
                 trierFavoris();
@@ -170,7 +170,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
                     croissant = 1;
                 }
                 else if (croissant ==1 ) {
-                    trierOrdreDeCroissant();
+                    trierOrdreDecroissant();
                     croissant = 0;
                 }
                 return true;
@@ -189,7 +189,7 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         });
         adapter.notifyDataSetChanged();
     }
-    public void trierOrdreDeCroissant (){
+    public void trierOrdreDecroissant(){
         trierOrdreCroissant();
         Collections.reverse(itemList);
 
@@ -208,13 +208,25 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
             }
 
         });
-        adapter.notifyDataSetChanged();
+
+        while(nonFavoriResteEncore()) {
+            for (int i = 0; i < itemList.size(); i++) {
+                if (itemList.get(i).getFavori() == 0) {
+                    itemList.remove(i);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }
     }
 
-
-
-
-
+    private boolean nonFavoriResteEncore() {
+        for (int i = 0; i < itemList.size(); i++) {
+            if (itemList.get(i).getFavori() == 0) {
+               return true;
+            }
+        }
+        return false;
+    }
 
 
 }
