@@ -18,23 +18,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EntreesUtilisateurs"></activity>
-        <activity android:name=".RecyclerLieux"></activity>
+        <activity android:name=".CreationUtilisateur"></activity>
+        <activity android:name=".EntreesUtilisateurs" />
+        <activity android:name=".RecyclerLieux" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-             <provider
-                 android:name="androidx.core.content.FileProvider"
-                 android:authorities="ca.qc.bdeb.p55.tp1"
-                 android:exported="false"
-                 android:grantUriPermissions="true">
-                 <meta-data
-                     android:name="android.support.FILE_PROVIDER_PATHS"
-                     android:resource="@xml/file_paths"></meta-data>
-             </provider>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="ca.qc.bdeb.p55.tp1"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity android:name=".MapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

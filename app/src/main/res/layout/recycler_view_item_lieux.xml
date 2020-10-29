@@ -22,10 +22,14 @@
 
             <ImageView
                 android:id="@+id/ImageLieux"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
-                app:srcCompat="@drawable/running"
-                android:contentDescription="Image Lieux" />
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="Image Lieux"
+                android:paddingLeft="2dp"
+                android:paddingTop="2dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="2dp"
+                app:srcCompat="@drawable/running" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -81,7 +85,7 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="6dp"
             android:background="?android:attr/listDivider" />
 
     </androidx.cardview.widget.CardView>

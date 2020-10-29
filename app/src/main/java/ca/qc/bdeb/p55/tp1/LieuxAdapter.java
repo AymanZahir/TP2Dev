@@ -1,5 +1,7 @@
 package ca.qc.bdeb.p55.tp1;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,6 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        // si jamais notre item layout contenait plusieurs views, on les rajoute ici
         public ImageView ImageLieux;
         public TextView txtViewNom;
         public TextView txtViewType;
@@ -36,7 +37,6 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
 
         public ItemViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            // si jamais notre item layout contenait plusieurs views, on les rajoute ici
 
             ImageLieux = itemView.findViewById(R.id.ImageLieux);
             txtViewNom = itemView.findViewById(R.id.txtViewNom);
@@ -113,6 +113,16 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
         } else {
             holder.imageFavori.setImageResource(R.drawable.ic_baseline_star_24);
         }
+
+
+        if (item.getImageResId() != null) {
+            Bitmap bitmap = DbBitmapUtility.getImage(item.getImageResId());
+           // bitmap.setWidth(82);
+            //bitmap.setHeight(82);
+            holder.ImageLieux.setImageBitmap(bitmap);
+        }
+
+
     }
 
     @Override

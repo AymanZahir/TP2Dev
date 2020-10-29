@@ -166,6 +166,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return listePersonne;
     }
 
+    public byte[] getImage(String name) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.query(TABLE_LIEUX, new String[]{LIEUX_PHOTO}, LIEUX_NOM + "=?", new String[]{name}, null, null, null);
+        byte[] image = cursor.getBlob(1);
+        return image;
+    }
+
+
     public void ajouterUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -185,4 +193,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         db.close();
     }
+
+    public int supprimerUser(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int nbDelete = db.delete(TABLE_USER, USER_ID + " = ?", new String[]{"" + id});
+
+        db.close();
+        return nbDelete;
+    }
+
+
+
 }
