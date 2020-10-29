@@ -72,7 +72,6 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
             }
         }
 
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -118,11 +117,8 @@ public class RecyclerLieux extends AppCompatActivity implements NavigationView.O
         }
     }
 
-
-
     public void onClickRapports(MenuItem item) {
-        Intent intent = new Intent(this, RecyclerLieux.class);
-        startActivity(intent);
+
     }
 
     public void onClickMap(MenuItem item) {

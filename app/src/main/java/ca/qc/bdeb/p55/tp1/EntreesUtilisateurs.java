@@ -121,10 +121,9 @@ public class EntreesUtilisateurs extends AppCompatActivity {
                 break;
         }
 
-       if(!editVisites.getText().toString().isEmpty()) {
+        if (!editVisites.getText().toString().isEmpty()) {
             nombreVisites = Integer.parseInt(editVisites.getText().toString());
         }
-
 
         Lieux lieu = new Lieux(editTextNom.getText().toString(), latLng.latitude, latLng.longitude, type,
                 editTextTelephone.getText().toString(), DbBitmapUtility.getBytes(bitmapPhoto), 0, nombreVisites);

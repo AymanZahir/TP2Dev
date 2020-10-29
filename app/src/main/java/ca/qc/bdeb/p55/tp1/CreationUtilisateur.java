@@ -12,14 +12,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class CreationUtilisateur extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+
+    private EditText editTextNom;
+    private EditText editTextDistMin;
+    private EditText editTextDistMax;
+    private TextView txtViewDistParcourue;
+    private Button btnModifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +36,7 @@ public class CreationUtilisateur extends AppCompatActivity implements Navigation
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer);
 
         navigationView.bringToFront();
@@ -39,6 +46,11 @@ public class CreationUtilisateur extends AppCompatActivity implements Navigation
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        editTextNom = findViewById(R.id.editTextNom);
+        editTextDistMin = findViewById(R.id.editTextDistMin);
+        editTextDistMax = findViewById(R.id.editTextDistMax);
+        txtViewDistParcourue = findViewById(R.id.txtViewDistParcourue);
+        btnModifier = findViewById(R.id.btnModifier);
     }
 
     @Override

@@ -2,6 +2,7 @@ package ca.qc.bdeb.p55.tp1;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
         public TextView txtViewNbr;
         public TextView txtViewTelephone;
         public ImageView imageFavori;
+        public CardView cardView;
 
         public ItemViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -44,6 +47,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
             txtViewNbr = itemView.findViewById(R.id.txtViewNbr);
             txtViewTelephone = itemView.findViewById(R.id.txtViewTelephone);
             imageFavori = itemView.findViewById(R.id.imageFavori);
+            cardView = itemView.findViewById(R.id.cardView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -56,7 +60,6 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
                             listener.OnItemClick(position);
                         }
                     }
-
                 }
             });
 
@@ -73,7 +76,6 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
                     }
                 }
             });
-
         }
     }
 
@@ -85,8 +87,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item_lieux, parent, false);
-        ItemViewHolder ivh = new ItemViewHolder(v, listener);
-        return ivh;
+        return new ItemViewHolder(v, listener);
     }
 
     @Override
@@ -95,17 +96,7 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
         holder.txtViewNom.setText(item.getNom());
         String texte = "Nombres de visites : " + item.getNombreVisites();
         holder.txtViewNbr.setText(texte);
-        switch (item.getType()) {
-            case 1:
-                holder.txtViewType.setText("Point d'eau potable");
-                break;
-            case 2:
-                holder.txtViewType.setText("Aire de repos");
-                break;
-            case 3:
-                holder.txtViewType.setText("Point observation");
-                break;
-        }
+
         holder.txtViewTelephone.setText(item.getTelephone());
 
         if (item.getFavori() == 0) {
@@ -114,6 +105,20 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
             holder.imageFavori.setImageResource(R.drawable.ic_baseline_star_24);
         }
 
+        switch (item.getType()) {
+            case 1:
+                holder.txtViewType.setText("Point d'eau potable");
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#4CB4C3"));
+                break;
+            case 2:
+                holder.txtViewType.setText("Aire de repos");
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#4E9F38"));
+                break;
+            case 3:
+                holder.txtViewType.setText("Point observation");
+                holder.cardView.setCardBackgroundColor(Color.parseColor("#DA8E2F"));
+                break;
+        }
 
         if (item.getImageResId() != null) {
             Bitmap bitmap = DbBitmapUtility.getImage(item.getImageResId());
@@ -121,8 +126,6 @@ public class LieuxAdapter extends RecyclerView.Adapter<LieuxAdapter.ItemViewHold
             //bitmap.setHeight(82);
             holder.ImageLieux.setImageBitmap(bitmap);
         }
-
-
     }
 
     @Override

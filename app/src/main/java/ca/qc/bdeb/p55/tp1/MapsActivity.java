@@ -98,8 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onClickMap(MenuItem item) {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+
     }
     public void onClickLieuxFavoris(MenuItem item) {
         Intent intent = new Intent(this, RecyclerLieux.class);
@@ -234,7 +233,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if ((resultCode == RESULT_OK) && (data != null)) {
                 Lieux lieu = data.getParcelableExtra(MapsActivity.EXTRA_RESULTAT_LIEUX);
 
-
                 ajouterMarqueur(lieu);
 
                 DBHelper dbHelper = DBHelper.getInstance(this);
@@ -244,17 +242,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void loadLieux() {
-
         DBHelper dbHelper = DBHelper.getInstance(this);
 
         for (Lieux lieu : dbHelper.getToutLesLieux()) {
-
             ajouterMarqueur(lieu);
-
         }
-
     }
-
 
     private void ajouterMarqueur(Lieux lieu) {
         LatLng pos = new LatLng(lieu.getLatitude(), lieu.getLongitude());
@@ -279,7 +272,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 16));
                 break;
         }
-        Toast.makeText(getApplicationContext(),"Vous avez ajouté un lieu",Toast.LENGTH_LONG).show();
-
     }
 }
